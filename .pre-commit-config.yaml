@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.4.6
+    hooks:
+      - id: ruff
+        args: 
+          - --fix
+          - --exit-non-zero-on-fix
+          - --select=F,E,W,ARG,ANN,TCH,TID,TD,NPY,PL
+        # F: Pyflakes (undefined names, unused variables)
+        # E,W: pycodestyle errors and warnings
+        # ARG: Function argument checker
+        # ANN: Type annotation checks
+        # TCH: Type checking
+        # TID: Disallow type ignore comments with no error codes
+        # TD: Type overridden by decorators
+        # NPY: NumPy-specific rules
+        # PL: Pylint rules
+      - id: ruff-format

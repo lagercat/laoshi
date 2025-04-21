@@ -1,0 +1,16 @@
+{
+  "name": "laoshi",
+  "version": "0.1.0",
+  "description": "A FastAPI application with future frontend support",
+  "scripts": {
+    "build": "source ./build.sh",
+    "start:backend": ".venv/bin/poetry run uvicorn backend.app.main:app --reload",
+    "test:backend": ".venv/bin/poetry run pytest",
+    "test:backend:cov": ".venv/bin/poetry run pytest --cov=backend backend/tests/",
+    "lint:backend": ".venv/bin/poetry run ruff check backend/",
+    "format:backend": ".venv/bin/poetry run ruff format backend/ && .venv/bin/poetry run ruff check --fix backend/",
+    "pre-commit:install": ".venv/bin/poetry run pre-commit install",
+    "pre-commit:run-all": ".venv/bin/poetry run pre-commit run --all-files",
+    "deps:update": ".venv/bin/poetry up --latest"
+  }
+}

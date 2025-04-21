@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "laoshi"
+version = "0.1.0"
+description = "A FastAPI application"
+authors = ["Sebastian Males <sebastianvmales@gmail.com>"]
+readme = "README.md"
+packages = [{include = "backend"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = "^0.115.12"
+uvicorn = "^0.34.2"
+python-dotenv = "^1.1.0"
+pydantic = "^2.8.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pytest-cov = "^4.1.0"
+ruff = "^0.4.6"
+pre-commit = "^3.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+python_files = "test_*.py"
+
+[tool.ruff]
+# Basic settings
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+# Focused on practical issues rather than style/complexity
+select = [
+    "F",    # Pyflakes (undefined names, unused variables)
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "ARG",  # Function argument checker
+    "ANN",  # Type annotation checks
+    "TCH",  # Type checking
+    "TID",  # Disallow type ignore comments with no error codes
+    "TD",   # Type overridden by decorators
+    "NPY",  # NumPy-specific rules
+    "PL",   # Pylint rules
+]
+ignore = ["S104", "ANN101", "ANN102", "ANN401"]  # Allow binding to all interfaces, ignore self/cls typing
+
+# Enable auto-fixes for all selected rules
+fixable = ["ALL"]
+unfixable = []
+
+# Exclude tests from some checks
+[tool.ruff.lint.per-file-ignores]
+"backend/tests/**/*" = ["S101", "ANN", "PLR2004"]  # Allow asserts in tests, relax type annotations, allow magic values
+
+# Sort imports
+[tool.ruff.lint.isort]
+known-first-party = ["backend"]
+force-single-line = false
+combine-as-imports = true
+lines-between-types = 1
+lines-after-imports = 2
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+skip-magic-trailing-comma = false
+docstring-code-format = true
