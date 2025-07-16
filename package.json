@@ -12,5 +12,8 @@
     "pre-commit:install": ".venv/bin/poetry run pre-commit install",
     "pre-commit:run-all": ".venv/bin/poetry run pre-commit run --all-files",
     "deps:update": ".venv/bin/poetry up --latest"
+  },
+  "dependencies": {
+    "@tabler/icons-react": "^3.31.0"
   }
 }
